@@ -20,6 +20,7 @@ class Dataset(object):
       prng=np.random,
       **pre_process_im_kwargs):
 
+    pre_process_im_kwargs.pop('customized_folder_path', None)
     self.pre_process_im = PreProcessIm(
       prng=prng,
       **pre_process_im_kwargs)
