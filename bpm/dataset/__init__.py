@@ -13,7 +13,7 @@ def create_dataset(
     name='market1501',
     part='trainval',
     **kwargs):
-  assert name in ['market1501', 'cuhk03', 'duke', 'combined'], \
+  assert name in ['market1501', 'cuhk03', 'duke', 'combined', 'customized'], \
     "Unsupported Dataset {}".format(name)
 
   assert part in ['trainval', 'train', 'val', 'test'], \
@@ -41,6 +41,9 @@ def create_dataset(
       "Only trainval part of the combined dataset is available now."
     im_dir = ospeu('~/Dataset/market1501_cuhk03_duke/trainval_images')
     partition_file = ospeu('~/Dataset/market1501_cuhk03_duke/partitions.pkl')
+  elif name == 'customized':
+    im_dir = osp.join(kwargs['customized_folder_path'],'images')
+    partition_file = osp.join(kwargs['customized_folder_path'],'partitions_0.pkl')
 
   ##################
   # Create Dataset #

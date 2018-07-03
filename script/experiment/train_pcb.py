@@ -43,7 +43,7 @@ class Config(object):
                         choices=['market1501', 'cuhk03', 'duke', 'combined'])
     parser.add_argument('--trainset_part', type=str, default='trainval',
                         choices=['trainval', 'train'])
-
+    parser.add_argument('--customized_folder_path', type=str, default='customized')
     parser.add_argument('--resize_h_w', type=eval, default=(384, 128))
     # These several only for training set
     parser.add_argument('--crop_prob', type=float, default=0)
@@ -126,7 +126,8 @@ class Config(object):
     self.test_batch_size = 32
     self.test_final_batch = True
     self.test_shuffle = False
-
+    self.customized_folder_path = args.customized_folder_path
+    
     dataset_kwargs = dict(
       name=self.dataset,
       resize_h_w=self.resize_h_w,
@@ -134,6 +135,7 @@ class Config(object):
       im_mean=self.im_mean,
       im_std=self.im_std,
       batch_dims='NCHW',
+      customized_folder_path=self.customized_folder_path,
       num_prefetch_threads=self.prefetch_threads)
 
     prng = np.random
